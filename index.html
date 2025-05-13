@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شحن الالعاب </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: white;
+            overflow-x: hidden;
+            height: 100vh;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            background-attachment: fixed;
+            animation: gradientShift 10s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(45deg, #6a11cb, #2575fc);
+            }
+
+            50% {
+                background: linear-gradient(45deg, #5f0117, #6204ce);
+            }
+
+            100% {
+                background: linear-gradient(45deg, #6a11cb, #0c3017);
+            }
+
+            150% {
+                background: linear-gradient(45deg, #f1c40f, #1abc9c);
+            }
+            200%{  
+                background: linear-gradient(45deg,#bb4988, #6a11cb);
+            }
+        }
+
+        header {
+            padding: 50px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #2ac90a;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        nav {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            margin: 0 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            background-color: #0704b8;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            transform: translateY(-5px);
+            background-color: #090de6;
+        }
+
+        .game-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 140px 20px 40px;
+        }
+
+        .game-card {
+            background-color: rgba(44, 62, 80, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 260px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background-color: #1410ec;
+        }
+
+        .game-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #d8b011;
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .game-card button {
+            padding: 14px 25px;
+            font-size: 1.3rem;
+            background-color: #34495e;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .game-card button:hover {
+            background-color: #1abc9c;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background-color: #222;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #08b424;
+            font-size: 1.1rem;
+        }
+
+        /* نموذج تسجيل الدخول */
+        .login-form {
+            display: none;
+            text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 14px;
+            margin: 18px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 14px;
+            background-color: #1abc9c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #16a085;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(190, 23, 23, 0.6);
+            z-index: 999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🎮ǤΔΜ€ ŞĦØƤ亗</h1>
+    </header>
+
+    <nav>
+        <a href="javascript:void(0);" id="loginBtn">خطاء </a>
+        <a href="javascript:void(0);" id="logoutBtn" style="display:none;">تسجيل الخروج</a>
+    </nav>
+
+    <div class="game-section">
+        <div class="game-card">
+            <h3>eFootball</h3>
+            <button onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20eFootball'">شراء
+                الان </button>
+        </div>
+        <div class="game-card">
+            <h3>Free Fire diamond</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20Free%20Fire'">شراء
+                الان</button>
+        </div>
+        <div class="game-card">
+            <h3>Call of Duty</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20Call%20of%20Duty'">شراء
+                الان</button>
+        </div>
+        <div class="game-card">
+            <h3>compte free fire</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20League%20of%20Legends'">شراء
+                الان</button>
+        </div>
+        <div class="game-card">
+            <h3>compte eFootball</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20Counter%20Strike'">شراء
+                الان </button>
+        </div>
+        <div class="game-card">
+            <h3>compte pupg</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20Counter%20Strike'">شراء
+                الان</button>
+        </div>
+        <div class="game-card">
+            <h3>compte roblox</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20Counter%20Strike'">شراء
+                الان</button>
+        </div>
+        <div class="game-card">
+            <h3>cod free fire</h3>
+            <button
+                onclick="window.location.href='https://wa.me/212651149570?text=أريد%20شحن%20لعبة%20Counter%20Strike'">شراء
+                الان</button>
+        </div>
+
+
+        <!-- نموذج تسجيل الدخول -->
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="login-form" id="loginForm">
+            <h2>تسجيل الدخول</h2>
+            <input type="email" placeholder="البريد الإلكتروني" id="email" required>
+            <input type="password" placeholder="كلمة المرور" id="password" required>
+            <button onclick="login()">تسجيل الدخول</button>
+        </div>
+
+        <footer>
+            <p>مرحبًا بك في only vneex – وجهتك الأولى لشحن الألعاب</p>
+            <p>موقعي هي منصة متخصصة في شحن العملات والموارد داخل اشهر الالعاب الالكترونية .بطريقة سريعة امنة وباسعار
+                متناسبة
+                نحن نهدف الى توفير تجربة موثقة وسلسة الاعبين العرب مع دعم فني متواصل وخياراتدفع متنوعة تناسب الجميع.
+                
+            </p>
+        </footer>
+
+         <script src="https://counter.dev/script.js" data-id="your-id" data-utcoffset="0"></script>
+
+
+    
